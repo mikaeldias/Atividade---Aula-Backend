@@ -16,7 +16,9 @@ Task a serem feitas:
 1. Crie uma aplicação do zero seguindo a documentação (https://flask.palletsprojects.com/en/stable/) - OK;
 2. Anotem comandos que vocês sabem ou acham que vão se repetir e que vão precisar no futuro durante o desenvolvimento (para facilitar nossa vida) - OK;
 3. Criar uma página index para boas-vindas e formulário de login (se o usuário estiver logado, podemos redirecionar para a página do usuário) - ok;
-4. O processo de autenticação deverá ser feito com dados temporário dentro do código da aplicação. Por exemplo, crie uma lista fictícia de usuários e senhas para validação. Se a autenticação der certo, redirecionar para a página inicial do usuário. Se deu errado, volta para o login e mostra alguma mensagem de erro.
+4. O processo de autenticação deverá ser feito com dados temporário dentro do código da aplicação. Por exemplo, crie uma lista fictícia de usuários e senhas para validação. Se a autenticação der certo, redirecionar para a página inicial do usuário. Se deu errado, volta para o login e mostra alguma mensagem de erro - ok.
 5. Com o usuário logado, na página do usuário, quero poder adicionar, remover, buscar, editar e listas suas músicas preferidas;
 6. Criar uma página específica para manipular as músicas; e
 7. Sair da sessão (logout).
+
+Comando git para reverter para o ultimo commit: git reset --hard HEAD

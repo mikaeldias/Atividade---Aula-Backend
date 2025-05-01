@@ -9,10 +9,16 @@
     <form action="/" method="post">
       <label for="usuario">Usuário:</label><br />
       <input type="text" id="usuario" name="usuario" required /><br /><br />
-
       <label for="senha">Senha:</label><br />
       <input type="password" id="senha" name="senha" required /><br /><br />
-
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="alerts">
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
       <input type="submit" value="Entrar" />
     </form>
   </body>
