@@ -1,13 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cadastrar Música</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #f9f9f9;
+      }
+
+      h2,
+      h1 {
+        color: #333;
+      }
+
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin-bottom: 30px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .delete-form {
+        display: inline-block;
+      }
+
+      .delete-button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .delete-button:hover {
+        background-color: #c0392b;
+      }
+
+      /* Ajuste de largura das colunas */
+      th,
+      td {
+        max-width: 200px;
+        word-wrap: break-word;
+      }
+    </style>
   </head>
   <body>
-    {% if logado %}
-    <h1>Seja vem vindo a página inicial do usuário {{ usuario }}</h1>
-    {% endif %}
+    <h2>Cadastrar Nova Música</h2>
+
+    <form action="/usuario" method="post">
+      <label for="cantor">Cantor:</label>
+      <input type="text" id="cantor" name="cantor" required />
+
+      <label for="musica">Música:</label>
+      <input type="text" id="musica" name="musica" required />
+
+      <button type="submit">Cadastrar Música</button>
+    </form>
+
+    <h1>Músicas Cadastradas</h1>
+
+    <table>
+      <tr>
+        <th style="width: 150px">ID</th>
+        <th style="width: 120px">Cantor</th>
+        <th style="width: 180px">Música</th>
+        <th>Ação</th>
+      </tr>
+
+      {% for id, dados in musicas.items() %}
+      <tr>
+        <td>{{ id }}</td>
+        <td>{{ dados.nome }}</td>
+        <td>{{ dados.musica }}</td>
+        <td>
+          <form
+            class="delete-form"
+            action="{{ url_for('remover_musica', musica_id=id) }}"
+            method="post"
+          >
+            <button
+              class="delete-button"
+              type="submit"
+              onclick="return confirm('Tem certeza que deseja apagar esta música?')"
+            >
+              🗑️
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
   </body>
 </html>
