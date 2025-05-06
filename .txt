@@ -22,3 +22,19 @@ Task a serem feitas:
 7. Sair da sessão (logout).
 
 Comando git para reverter para o ultimo commit: git reset --hard HEAD
+
+
+
+
+@app.route('/editar/<musica_id>', methods=['GET', 'POST'])
+
+def editar_musica(musica_id):
+    if musica_id not in musicas:
+        return "Música não encontrada", 404
+    
+    if request.method == 'POST':
+        novo_nome = request.form.get('cantor')
+        nova_musica = request.form.get('musica')
+        musicas[musica_id] = {'nome': novo_nome, 'musica': nova_musica}
+        return render_template('cadastrar_musica')
+

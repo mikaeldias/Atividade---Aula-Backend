@@ -47,3 +47,19 @@ def remover_musica(musica_id):
     else:
         flash('Música não encontrada.', 'danger')
     return redirect(url_for('cadastrar_musica'))
+
+@app.route('/logout')
+def logout():
+    return render_template('index.html')
+
+@app.route('/editar/<musica_id>', methods=['GET', 'POST'])
+
+def editar_musica(musica_id):
+    if musica_id not in musicas:
+        return "Música não encontrada", 404
+    if request.method == 'POST':
+        novo_nome = request.form.get('cantor')
+        nova_musica = request.form.get('musica')
+        musicas[musica_id] = {'nome': novo_nome, 'musica': nova_musica}
+        return render_template('cadastrar_musica')
+
